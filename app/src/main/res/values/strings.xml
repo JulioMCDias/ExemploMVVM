@@ -1,12 +1,17 @@
 <resources>
     <string name="app_name">ExemploMVVM</string>
     <string name="title_activity_login">Login</string>
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
+    <string name="title_note">Titulo da nota</string>
+    <string name="descri_note">Descrição</string>
+    <string name="save">Salvar</string>
+    <string name="note">Anotação</string>
+    <string name="notes">Notas</string>
+    <string name="delete">apagar</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Senha</string>
+    <string name="logar">Logar</string>
+    <string name="info_new_accont">Não possui uma conta?</string>
+    <string name="register">Cadastrar</string>
+    <string name="name">nome</string>
 </resources>

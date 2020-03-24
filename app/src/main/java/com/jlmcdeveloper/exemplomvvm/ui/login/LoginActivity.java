@@ -3,6 +3,7 @@ package com.jlmcdeveloper.exemplomvvm.ui.login;
 import android.app.Activity;
 
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
@@ -23,18 +24,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jlmcdeveloper.exemplomvvm.R;
-import com.jlmcdeveloper.exemplomvvm.ui.login.LoginViewModel;
-import com.jlmcdeveloper.exemplomvvm.ui.login.LoginViewModelFactory;
+import com.jlmcdeveloper.exemplomvvm.ViewModelProviderFactory;
+
+import javax.inject.Inject;
 
 public class LoginActivity extends AppCompatActivity {
 
+    @Inject
+    ViewModelProviderFactory factory;
     private LoginViewModel loginViewModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory())
+        loginViewModel = new ViewModelProvider(this, factory)
                 .get(LoginViewModel.class);
 
         final EditText usernameEditText = findViewById(R.id.username);

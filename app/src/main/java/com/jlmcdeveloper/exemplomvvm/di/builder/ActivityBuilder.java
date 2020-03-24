@@ -2,6 +2,7 @@ package com.jlmcdeveloper.exemplomvvm.di.builder;
 
 import com.jlmcdeveloper.exemplomvvm.ui.main.MainActivity;
 import com.jlmcdeveloper.exemplomvvm.ui.login.LoginActivity;
+import com.jlmcdeveloper.exemplomvvm.ui.note.NoteActivity;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -15,4 +16,6 @@ public abstract class ActivityBuilder {
     @ContributesAndroidInjector
     abstract MainActivity bindMainActivity();
 
+    @ContributesAndroidInjector
+    abstract NoteActivity bindNoteActivity();
 }

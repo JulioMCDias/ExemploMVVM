@@ -4,13 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 
 
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.jlmcdeveloper.exemplomvvm.BR;
 import com.jlmcdeveloper.exemplomvvm.R;
 import com.jlmcdeveloper.exemplomvvm.ViewModelProviderFactory;
 import com.jlmcdeveloper.exemplomvvm.databinding.ActivityMainBinding;
 import com.jlmcdeveloper.exemplomvvm.ui.base.BaseActivity;
+import com.jlmcdeveloper.exemplomvvm.ui.note.NoteActivity;
 
 import javax.inject.Inject;
 
@@ -29,7 +30,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
     @Override
     public void openNote() {
-        Intent intent = new Intent();
+        startActivity(new Intent(this, NoteActivity.class));
+        finish();
     }
 
 
@@ -45,7 +47,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
     @Override
     public MainViewModel getViewModel() {
-        mainViewModel = ViewModelProviders.of(this,factory).get(MainViewModel.class);
+        mainViewModel = new ViewModelProvider(this, factory).get(MainViewModel.class);
         return mainViewModel;
     }
 }
