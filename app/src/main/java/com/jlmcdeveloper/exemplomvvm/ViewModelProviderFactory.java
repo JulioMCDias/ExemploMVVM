@@ -4,10 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.jlmcdeveloper.exemplomvvm.data.LoginDataSource;
-import com.jlmcdeveloper.exemplomvvm.data.LoginRepository;
+import com.jlmcdeveloper.exemplomvvm.data.DataManager;
 import com.jlmcdeveloper.exemplomvvm.ui.login.LoginViewModel;
 import com.jlmcdeveloper.exemplomvvm.ui.main.MainViewModel;
+import com.jlmcdeveloper.exemplomvvm.ui.note.NoteViewModel;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -15,9 +15,11 @@ import javax.inject.Singleton;
 @Singleton
 public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFactory {
 
-    @Inject
-    public ViewModelProviderFactory(){
+    private final DataManager dataManager;
 
+    @Inject
+    public ViewModelProviderFactory(DataManager dataManager){
+        this.dataManager = dataManager;
     }
 
     @NonNull
@@ -25,10 +27,13 @@ public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFacto
     @SuppressWarnings("unchecked")
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         if (modelClass.isAssignableFrom(LoginViewModel.class)) {
-            return (T) new LoginViewModel(LoginRepository.getInstance(new LoginDataSource()));
+            return (T) new LoginViewModel(dataManager);
         }
         else if (modelClass.isAssignableFrom(MainViewModel.class)) {
-            return (T) new MainViewModel();
+            return (T) new MainViewModel(dataManager);
+        }
+        else if (modelClass.isAssignableFrom(NoteViewModel.class)) {
+            return (T) new NoteViewModel(dataManager);
         }
         else {
             throw new IllegalArgumentException("Unknown ViewModel class");

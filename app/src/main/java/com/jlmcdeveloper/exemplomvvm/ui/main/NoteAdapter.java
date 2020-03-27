@@ -1,37 +1,31 @@
-package com.jlmcdeveloper.notes.ui.main;
+package com.jlmcdeveloper.exemplomvvm.ui.main;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.jlmcdeveloper.notes.R;
-import com.jlmcdeveloper.notes.data.model.Note;
+import com.jlmcdeveloper.exemplomvvm.data.model.db.Note;
+import com.jlmcdeveloper.exemplomvvm.databinding.CardNoteBinding;
 
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteHole> {
 
     private List<Note> notes;
-    private MainMvpPresenter<MainMvpView> presenter;
+    private Listener listener;
 
-    NoteAdapter(@NonNull MainMvpPresenter<MainMvpView> presenter, List<Note> notes){
-        this.presenter = presenter;
+    public NoteAdapter(List<Note> notes){
         this.notes = notes;
     }
 
     @NonNull
     @Override
     public NoteHole onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new NoteHole(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.card_note_view, parent, false));
+        CardNoteBinding cardNoteBinding = CardNoteBinding.inflate(LayoutInflater.from(parent.getContext()),
+                parent, false);
+        return new NoteHole(cardNoteBinding);
     }
 
     @Override
@@ -44,35 +38,43 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteHole> {
         return notes.size();
     }
 
+    void setListener(Listener listener) {
+        this.listener = listener;
+    }
+
+
+    public void updateItems(List<Note> listNote) {
+        notes.clear();
+        this.notes.addAll(listNote);
+        notifyDataSetChanged();
+    }
+
+
+
+    public interface Listener{
+        void onClickNote(Long id);
+    }
+
 
     //----------------- ViewHolder ---------------------
-    class NoteHole extends RecyclerView.ViewHolder {
-        private int position;
+    class NoteHole extends RecyclerView.ViewHolder implements Listener{
 
-        @BindView(R.id.text_note_title)
-        TextView textTitle;
+        private CardNoteBinding cardNoteBinding;
+        private MainItemViewModel itemViewModel;
 
-        @BindView(R.id.text_note_descri)
-        TextView textDiscri;
-
-
-        @OnClick(R.id.liner_layout_cardView)
-        void cardView(){
-            presenter.editNote(notes.get(position));
-        }
-
-
-        NoteHole(@NonNull View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
-
+        NoteHole(CardNoteBinding cardNoteBinding){
+            super(cardNoteBinding.getRoot());
+            this.cardNoteBinding = cardNoteBinding;
         }
 
         void onBind(int position) {
-            this.position = position;
+            itemViewModel = new MainItemViewModel(notes.get(position), this);
+            cardNoteBinding.setViewModel(itemViewModel);
+        }
 
-            textTitle.setText(notes.get(position).getTitle());
-            textDiscri.setText(notes.get(position).getDescription());
+        @Override
+        public void onClickNote(Long id) {
+            listener.onClickNote(id);
         }
     }
 }

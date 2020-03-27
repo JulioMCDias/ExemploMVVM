@@ -1,14 +1,17 @@
-package com.jlmcdeveloper.notes.data.network;
+package com.jlmcdeveloper.exemplomvvm.data.remote;
 
 
-import com.jlmcdeveloper.notes.data.model.Note;
-import com.jlmcdeveloper.notes.data.model.User;
+import com.jlmcdeveloper.exemplomvvm.data.model.api.LoginRequest;
+import com.jlmcdeveloper.exemplomvvm.data.model.api.LoginResponse;
+import com.jlmcdeveloper.exemplomvvm.data.model.api.NoteAllRequest;
+import com.jlmcdeveloper.exemplomvvm.data.model.api.NoteAllResponse;
+import com.jlmcdeveloper.exemplomvvm.data.model.api.NoteRequest;
+import com.jlmcdeveloper.exemplomvvm.data.model.api.NoteResponse;
 
-import java.util.List;
 
 import io.reactivex.Single;
+import retrofit2.Response;
 import retrofit2.http.Body;
-import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -16,12 +19,12 @@ import retrofit2.http.Query;
 public interface ApiRestServer {
 
     @POST("peoples/")
-    Single<User> setLogin(@Query("method") String method, @Body User loginRequest);
+    Single<Response<LoginResponse>> setLogin(@Query("method") String method, @Body LoginRequest loginRequest);
 
     @POST("notes/")
-    Single<List<Note>> getNotes(@Query("method") String method, @Body User loginResponse);
+    Single<Response<NoteAllResponse>> getNotes(@Query("method") String method, @Body NoteAllRequest noteAllRequest);
 
     @POST("notes/")
-    Single<Note> setNote(@Query("method") String method, @Body Note noteRequest);
+    Single<Response<NoteResponse>> setNote(@Query("method") String method, @Body NoteRequest noteRequest);
 
 }

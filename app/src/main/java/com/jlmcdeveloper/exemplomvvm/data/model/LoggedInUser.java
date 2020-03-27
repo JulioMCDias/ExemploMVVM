@@ -5,19 +5,25 @@ package com.jlmcdeveloper.exemplomvvm.data.model;
  */
 public class LoggedInUser {
 
-    private String userId;
+    private Long userId;
     private String displayName;
+    private String email;
 
-    public LoggedInUser(String userId, String displayName) {
+    public LoggedInUser(Long userId, String displayName, String email) {
         this.userId = userId;
         this.displayName = displayName;
+        this.email = email;
     }
 
-    public String getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
     public String getDisplayName() {
         return displayName;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }

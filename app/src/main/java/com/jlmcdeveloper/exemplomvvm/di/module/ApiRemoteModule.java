@@ -2,9 +2,8 @@ package com.jlmcdeveloper.exemplomvvm.di.module;
 
 import android.content.Context;
 
-import com.jlmcdeveloper.notes.data.network.ApiEndPoint;
-import com.jlmcdeveloper.notes.data.network.ApiRestServer;
-import com.jlmcdeveloper.notes.di.ContextApplication;
+import com.jlmcdeveloper.exemplomvvm.data.remote.ApiEndPoint;
+import com.jlmcdeveloper.exemplomvvm.data.remote.ApiRestServer;
 
 import javax.inject.Singleton;
 
@@ -50,7 +49,7 @@ public class ApiRemoteModule {
 
     @Provides
     @Singleton
-    Cache provideCache(@ContextApplication Context context){
+    Cache provideCache(Context context){
         return new Cache(context.getCacheDir(), CACHE_SIZE);
     }
 

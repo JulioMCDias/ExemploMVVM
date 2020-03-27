@@ -1,10 +1,9 @@
-package com.jlmcdeveloper.notes.di.module;
+package com.jlmcdeveloper.exemplomvvm.di.module;
 
 import android.content.Context;
 
-import com.jlmcdeveloper.notes.data.local.NotesRoomDatabase;
-import com.jlmcdeveloper.notes.di.ContextApplication;
-import com.jlmcdeveloper.notes.utils.Constants;
+import com.jlmcdeveloper.exemplomvvm.utils.Constants;
+import com.jlmcdeveloper.exemplomvvm.data.local.NotesRoomDatabase;
 
 import dagger.Module;
 import dagger.Provides;
@@ -18,7 +17,7 @@ public class LocalDatabaseModule {
     }
 
     @Provides
-    NotesRoomDatabase provideNotesRoomDatabase(@ContextApplication Context context, String databaseName){
+    NotesRoomDatabase provideNotesRoomDatabase(Context context, String databaseName){
         return NotesRoomDatabase.getDatabase(context, databaseName);
     }
 }

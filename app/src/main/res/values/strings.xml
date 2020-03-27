@@ -14,4 +14,11 @@
     <string name="info_new_accont">Não possui uma conta?</string>
     <string name="register">Cadastrar</string>
     <string name="name">nome</string>
+    <string name="invalid_email_password">email e senha invalidos</string>
+    <string name="error_login_network">erro no login</string>
+    <string name="error_in_update">Erro ao Atualizar</string>
+    <string name="error_in_save_remote">Erro ao salvar no servidor</string>
+    <string name="error_in_inscribe">Erro ao gravar</string>
+    <string name="error_new_user">erro ao criar o usuario</string>
+    <string name="error_in_network">erro na comunicação</string>
 </resources>

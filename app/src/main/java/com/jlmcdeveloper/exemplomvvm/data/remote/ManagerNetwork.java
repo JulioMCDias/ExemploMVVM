@@ -1,23 +1,27 @@
-package com.jlmcdeveloper.notes.data.network;
+package com.jlmcdeveloper.exemplomvvm.data.remote;
 
-import com.jlmcdeveloper.notes.data.model.Note;
-import com.jlmcdeveloper.notes.data.model.User;
+import com.jlmcdeveloper.exemplomvvm.data.model.LoginUser;
+import com.jlmcdeveloper.exemplomvvm.data.model.api.LoginResponse;
+import com.jlmcdeveloper.exemplomvvm.data.model.api.NoteAllResponse;
+import com.jlmcdeveloper.exemplomvvm.data.model.api.NoteResponse;
+import com.jlmcdeveloper.exemplomvvm.data.model.db.Note;
 
 import java.util.List;
 
 import io.reactivex.Single;
+import retrofit2.Response;
 
 public interface ManagerNetwork {
 
-    Single<User> setLoginRemote(User user);
+    Single<Response<LoginResponse>> setLoginRemote(LoginUser user);
 
-    Single<User> createLoginRemote(User user);
+    Single<Response<LoginResponse>> createLoginRemote(LoginUser user);
 
-    Single<List<Note>> getAllNotesRemote();
+    Single<Response<NoteAllResponse>> getAllNotesRemote();
 
-    Single<Note> createNoteRemote(Note note);
+    Single<Response<NoteResponse>> createNoteRemote(Note note);
 
-    Single<Note> updateNoteRemote(Note note);
+    Single<Response<NoteResponse>> updateNoteRemote(Note note);
 
-    Single<Note> deleteNoteRemote(Note note);
+    Single<Response<NoteResponse>> deleteNoteRemote(Note note);
 }
